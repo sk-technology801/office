@@ -89,8 +89,8 @@ const ContactPage = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, name: "GitHub", url: "#", color: "hover:text-gray-300" },
-    { icon: Linkedin, name: "LinkedIn", url: "#", color: "hover:text-blue-400" },
+    { icon: Github, name: "GitHub", url: "https://github.com/sk-technology801", color: "hover:text-gray-300" },
+    { icon: Linkedin, name: "LinkedIn", url: "https://www.linkedin.com/in/sk-technology-05080b338/", color: "hover:text-blue-400" },
     { icon: Twitter, name: "Twitter", url: "#", color: "hover:text-sky-400" },
     { icon: Instagram, name: "Instagram", url: "#", color: "hover:text-pink-400" }
   ];
