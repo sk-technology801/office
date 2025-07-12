@@ -30,13 +30,42 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+  //   // Simulate form submission
+  //   setTimeout(() => {
+  //     setIsSubmitting(false);
+  //     setSubmitStatus('success');
+  //     setFormData({
+  //       name: '',
+  //       email: '',
+  //       subject: '',
+  //       message: '',
+  //       projectType: '',
+  //       budget: '',
+  //       timeline: ''
+  //     });
+      
+  //     // Clear success message after 5 seconds
+  //     setTimeout(() => setSubmitStatus(null), 5000);
+  //   }, 2000);
+  // };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (res.ok) {
       setSubmitStatus('success');
       setFormData({
         name: '',
@@ -47,11 +76,17 @@ const ContactPage = () => {
         budget: '',
         timeline: ''
       });
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitStatus(null), 5000);
-    }, 2000);
-  };
+    } else {
+      setSubmitStatus('error');
+    }
+  } catch (err) {
+    console.error(err);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitStatus(null), 5000);
+  }
+};
 
   const contactMethods = [
     {
